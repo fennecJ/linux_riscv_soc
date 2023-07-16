@@ -5,6 +5,10 @@
 #include <linux/compiler.h>
 #include <linux/types.h>
 
+#define dbg_info(fmt, ...) do { \
+    printk("[DBG] %s:%d:%s: " fmt, __FILE__, __LINE__, __func__, ##__VA_ARGS__); \
+} while(0)
+
 /* Built-in __init functions needn't be compiled with retpoline */
 #if defined(__noretpoline) && !defined(MODULE)
 #define __noinitretpoline __noretpoline
